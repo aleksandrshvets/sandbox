@@ -1,0 +1,26 @@
+<p></p>
+<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputQuery" class="sr-only">Password</label>
+    <input (change)="onChange($event)" type="text" class="form-control" id="inputQuery" placeholder="Query">
+    <!--<ul class="form-group" *ngIf="suggestions">
+      <li *ngFor="let suggestion of suggestions" class="list-group-item">{{ suggestion.phrase }}</li>
+    </ul>-->
+  </div>
+  <button type="submit" class="btn btn-primary mb-2" (click)="getSuggestions()">Get QTA suggestions</button>
+  <div class="list-group" *ngIf="suggestions">
+    <div *ngFor="let suggestion of suggestions">
+      <div class="clearfix">
+        <button class="list-group-item disabled">
+          <strong> {{ suggestion.text }}</strong>
+        </button>
+          <span class=".text-danger">PageRank:</span>
+          <span class="d-inline p-2 bg-primary text-warning">
+            <span>{{suggestion.pageRank}}</span>
+          </span>
+          <span>&nbsp;Pages:</span><span>{{suggestion.pages}}</span>
+          <span>&nbsp;Phrase:</span><span>{{suggestion.phrase}}</span>
+        </div>
+    </div>
+  </div>
+</form>
