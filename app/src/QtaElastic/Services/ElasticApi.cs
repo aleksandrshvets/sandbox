@@ -38,7 +38,11 @@ namespace QtaElastic.Services
                             ""prefix"" : ""{0}"",
                             ""completion"" : {{
                                 ""field"" : ""phraseSuggest"",
-                                ""skip_duplicates"": true
+                                ""skip_duplicates"": true,
+                                ""fuzzy"": {{
+                                    ""fuzziness"": 1
+                                    }}
+                                }}
                             }}
                         }}
                     }}

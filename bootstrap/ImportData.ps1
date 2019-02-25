@@ -22,8 +22,8 @@ function Get-SuggestorInputWords(
 }
 
 
-
-$dataString = Get-Content -Path data.json -Raw
+$ScriptHome = $PSScriptRoot
+$dataString = Get-Content -Path $ScriptHome/data.json -Raw
 $dataObj = $dataString | ConvertFrom-Json
 $data = $dataObj.data
 $errorList = @();
