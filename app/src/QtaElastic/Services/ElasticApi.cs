@@ -29,6 +29,7 @@ namespace QtaElastic.Services
             {
                 elasticUrl = _config.Value.ElasticUrl;
             }
+
             var client = _httpClientFactory.CreateClient();
             var elasticQuery = string.Format(
                 @"
