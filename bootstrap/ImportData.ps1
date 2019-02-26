@@ -46,6 +46,7 @@ foreach ($item in $data) {
     
     try {
         Invoke-RestMethod -Uri http://127.0.1:9200/qta-poc/doc/ -Method POST -Body $itemJson -ContentType 'application/json'
+        #Invoke-RestMethod -Uri http://10.245.1.21/elastic/qta-poc/doc/ -Method POST -Body $itemJson -ContentType 'application/json'
     }
     catch {
         $errorList += $itemJson

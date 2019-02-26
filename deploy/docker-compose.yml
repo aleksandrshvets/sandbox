@@ -1,0 +1,39 @@
+version: "3.5"
+services:
+  
+  elastic:
+    container_name: elastic
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+    networks:
+      - isolated_nw
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:6.5.4
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      - isolated_nw
+    environment:
+      SERVER_NAME: kibana.example.org
+      ELASTICSEARCH_URL: http://elastic:9200
+    ports:
+      - "5601:5601"
+  qtademoapp:
+    image: pddcontainerregistry.azurecr.io/poc/qtademoapp:0.0.3
+    environment:
+      ELASTIC_BASE_URL: http://elastic:9200
+    ports:
+      - "9195:80"
+    networks:
+      - isolated_nw
+networks:
+  isolated_nw:
+    # Use a custom driver
+    driver: bridge
+

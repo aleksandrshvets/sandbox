@@ -1,4 +1,5 @@
 
+
 PUT qta-poc
 {
         "mappings" : {
