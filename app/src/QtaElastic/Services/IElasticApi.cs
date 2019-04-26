@@ -8,6 +8,6 @@ namespace QtaElastic.Services
 {
    public interface IElasticApi
     {
-        Task<IEnumerable<QtaData>> GetSuggestions(string query);
+        Task<IEnumerable<QtaData>> GetSuggestions(string query, string docid);
     }
 }

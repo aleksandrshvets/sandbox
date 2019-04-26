@@ -1,26 +1,36 @@
-<p></p>
-<form class="form-inline">
-  <div class="form-group mx-sm-3 mb-2">
-    <label for="inputQuery" class="sr-only">Password</label>
-    <input (change)="onChange($event)" type="text" class="form-control" id="inputQuery" placeholder="Query">
-    <!--<ul class="form-group" *ngIf="suggestions">
-      <li *ngFor="let suggestion of suggestions" class="list-group-item">{{ suggestion.phrase }}</li>
-    </ul>-->
-  </div>
-  <button type="submit" class="btn btn-primary mb-2" (click)="getSuggestions()">Get QTA suggestions</button>
-  <div class="list-group" *ngIf="suggestions">
-    <div *ngFor="let suggestion of suggestions">
-      <div class="clearfix">
-        <button class="list-group-item disabled">
-          <strong> {{ suggestion.text }}</strong>
-        </button>
-          <span class=".text-danger">PageRank:</span>
-          <span class="d-inline p-2 bg-primary text-warning">
-            <span>{{suggestion.pageRank}}</span>
-          </span>
-          <span>&nbsp;Pages:</span><span>{{suggestion.pages}}</span>
-          <span>&nbsp;Phrase:</span><span>{{suggestion.phrase}}</span>
+<div class="container">
+  <p></p>
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="inputQuery" class="sr-only">Password</label>
+      <input (change)="onChange($event)" type="text" class="form-control query" id="inputQuery" placeholder="Query">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Action - 1</button>
+          <button ngbDropdownItem>Another Action</button>
+          <button ngbDropdownItem>Something else is here</button>
         </div>
+      </div>
+      <!--<ul class="form-group" *ngIf="suggestions">
+        <li *ngFor="let suggestion of suggestions" class="list-group-item">{{ suggestion.phrase }}</li>
+      </ul>-->
     </div>
-  </div>
-</form>
+    <button type="submit" class="btn btn-primary mb-2" (click)="getSuggestions()">Get QTA suggestions</button>
+    <div class="list-group" *ngIf="suggestions">
+      <div *ngFor="let suggestion of suggestions">
+        <div class="clearfix">
+          <button class="list-group-item disabled">
+            <strong> {{ suggestion.text }}</strong>
+          </button>
+          <span class=".text-danger">Weight:</span>
+          <span class="d-inline p-2 bg-primary text-warning">
+            <span>{{suggestion.weight}}</span>
+          </span>
+          <span>&nbsp;Pages:</span><span>{{suggestion.page}}</span>
+          <span>&nbsp;Caption:</span><span>{{suggestion.caption}}</span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

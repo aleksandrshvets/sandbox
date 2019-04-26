@@ -8,8 +8,9 @@ namespace QtaElastic.Models
     public class QtaData
     {
         public string Text { get; set; }
-        public string Pages { get; set; }
-        public string Phrase { get; set; }
-        public string PageRank { get; set; }
+        public string Page { get; set; }
+        public string Caption { get; set; }
+        public string Weight { get; set; }
+        public string GlobalId { get; set; }
     }
 }

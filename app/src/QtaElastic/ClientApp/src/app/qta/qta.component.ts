@@ -5,7 +5,8 @@ import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-fetch-data',
-  templateUrl: './qta.component.html'
+  templateUrl: './qta.component.html',
+  styleUrls: ['./qta.component.less']
 })
 export class QtaComponent {
   public suggestions: QtaData[];
@@ -31,8 +32,9 @@ export class QtaComponent {
 
 
 interface QtaData {
-  phrase: string;
+  caption: string;
   text: string;
-  pages: string;
-  pageRanks: string;
+  page: string;
+  weight: string;
+  globalid: string;
 }

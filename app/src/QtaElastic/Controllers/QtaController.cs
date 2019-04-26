@@ -18,14 +18,14 @@ namespace QtaElastic.Controllers
         }
         private static QtaData[] SampleData = new[]
         {
-           new QtaData(){Phrase ="laser"}, new QtaData(){Phrase ="system"}, new QtaData(){Phrase ="water"}
+           new QtaData(){Caption ="laser"}, new QtaData(){Caption ="system"}, new QtaData(){Caption ="water"}
         };
 
         [HttpGet("[action]")]
-        public async Task<IEnumerable<QtaData>> QtaDatas(string query)
+        public async Task<IEnumerable<QtaData>> QtaDatas(string query, string docid)
         {
             //return SampleData;
-            return await _elasticApi.GetSuggestions(query);
+            return await _elasticApi.GetSuggestions(query, docid);
         }
     }
 }
