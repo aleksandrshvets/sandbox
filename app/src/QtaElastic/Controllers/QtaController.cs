@@ -27,5 +27,12 @@ namespace QtaElastic.Controllers
             //return SampleData;
             return await _elasticApi.GetSuggestions(query, docid);
         }
+
+        [HttpGet("[action]")]
+        public async Task<IEnumerable<string>> AvailableDocuments()
+        {
+            //return SampleData;
+            return await _elasticApi.AvailableDocuments();
+        }
     }
 }

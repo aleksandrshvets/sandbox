@@ -1,16 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { QtaComponent } from './qta/qta.component';
+import { HttpClientModule } from '@angular/common/http';
 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { QtaComponent } from './qta/qta.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
@@ -19,19 +15,13 @@ export function getBaseUrl() {
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    QtaComponent
+    QtaComponent,
+    NavMenuComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: QtaComponent, pathMatch: 'full' },
-    ]),
     NgbModule.forRoot()
   ],
   providers: [
@@ -39,4 +29,6 @@ export function getBaseUrl() {
   ],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

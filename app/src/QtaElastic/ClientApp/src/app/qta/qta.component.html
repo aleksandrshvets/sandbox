@@ -1,36 +1,42 @@
-<div class="container">
-  <p></p>
-  <form class="form-inline">
-    <div class="form-group mx-sm-3 mb-2">
-      <label for="inputQuery" class="sr-only">Password</label>
-      <input (change)="onChange($event)" type="text" class="form-control query" id="inputQuery" placeholder="Query">
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>Action - 1</button>
-          <button ngbDropdownItem>Another Action</button>
-          <button ngbDropdownItem>Something else is here</button>
+<div class="container-fluid">
+  <div class="row">
+    <p></p>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form ng-submit="getSuggestions()">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="input-group">
+              <div ngbDropdown class="d-inline-block query-input-container">
+                <input (keyup)="onChange($event)" id="inputq" type="text" class="form-control" placeholder="Input query" aria-label="Input query" aria-describedby="basic-addon2">
+                    <ul class="list-group" *ngIf="suggestions">
+                      <li class="list-group-item list-group-item-secondary" *ngFor="let suggestion of suggestions">
+                        <span><strong>{{ suggestion.caption }}</strong></span>
+                        <div class="clearfix"></div>
+                        <span class=".text-danger">Weight:</span>
+                        <span class="d-inline text-primary">
+                          <span>{{suggestion.weight}}</span>
+                        </span>
+                        <span>&nbsp;Page:</span><span>{{suggestion.page}}</span>
+                      </li>
+                    </ul>
+              </div>
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle type="button">{{selectedDoc}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button ngbDropdownItem *ngFor="let doc of docs" (click)="ChangeGlobalId(doc)" type="button">{{doc}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group-append get-suggestions">
+              <button class="btn btn-outline-secondary" type="submit" (click)="getSuggestions()" [disabled]="this.isActionButtonDisabled">Get instant search results</button>
+            </div>
+          </div>
         </div>
-      </div>
-      <!--<ul class="form-group" *ngIf="suggestions">
-        <li *ngFor="let suggestion of suggestions" class="list-group-item">{{ suggestion.phrase }}</li>
-      </ul>-->
+      </form>
     </div>
-    <button type="submit" class="btn btn-primary mb-2" (click)="getSuggestions()">Get QTA suggestions</button>
-    <div class="list-group" *ngIf="suggestions">
-      <div *ngFor="let suggestion of suggestions">
-        <div class="clearfix">
-          <button class="list-group-item disabled">
-            <strong> {{ suggestion.text }}</strong>
-          </button>
-          <span class=".text-danger">Weight:</span>
-          <span class="d-inline p-2 bg-primary text-warning">
-            <span>{{suggestion.weight}}</span>
-          </span>
-          <span>&nbsp;Pages:</span><span>{{suggestion.page}}</span>
-          <span>&nbsp;Caption:</span><span>{{suggestion.caption}}</span>
-        </div>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>

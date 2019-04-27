@@ -22,6 +22,41 @@ namespace QtaElastic.Services
             _httpClientFactory = httpClientFactory;
         }
 
+        public async Task<string[]> AvailableDocuments()
+        {
+            var elasticUrl = Environment.GetEnvironmentVariable("ELASTIC_BASE_URL");
+            if (string.IsNullOrEmpty(elasticUrl))
+            {
+                elasticUrl = _config.Value.ElasticUrl;
+            }
+
+            var client = _httpClientFactory.CreateClient();
+
+            var elasticQuery =
+                @"
+            {
+              ""size"": 0,
+                ""aggs"" : {
+                    ""docs"" : {
+                        ""terms"" : { ""field"" : ""ewb_doc_id"" } 
+                    }
+                }
+            }";
+            var result = await client.PostAsync(string.Format("{0}{1}", elasticUrl, "qta-poc/_search"), new StringContent(elasticQuery, Encoding.UTF8, "application/json"));
+
+            var responseStr = await result.Content.ReadAsStringAsync();
+            var parsedResponse = ParseResponse(responseStr);
+            var buckets = parsedResponse["aggregations"]["docs"]["buckets"].Children() as IEnumerable<JToken>;
+
+            var resultList = new List<string>();
+            foreach (var item in buckets)
+            {
+                resultList.Add(item["key"].ToString());
+            }
+            return resultList.ToArray();
+
+        }
+
         public async Task<IEnumerable<QtaData>> GetSuggestions(string query, string docid)
         {
             var elasticUrl = Environment.GetEnvironmentVariable("ELASTIC_BASE_URL");
@@ -66,11 +101,11 @@ namespace QtaElastic.Services
                   }}
                 }}", query, docid);
 
-            var savedQuery = await GetSuggestionQuery();
-            if (!string.IsNullOrEmpty(savedQuery))
-            {
-                elasticQuery = string.Format(savedQuery, query);
-            }
+            //var savedQuery = await GetSuggestionQuery();
+            //if (!string.IsNullOrEmpty(savedQuery))
+            //{
+            //    elasticQuery = string.Format(savedQuery, query);
+            //}
             var result = await client.PostAsync(string.Format("{0}{1}", elasticUrl, "/qta-poc/_search"), new StringContent(elasticQuery, Encoding.UTF8, "application/json"));
 
             var responseStr = await result.Content.ReadAsStringAsync();
@@ -88,7 +123,7 @@ namespace QtaElastic.Services
                                  Text = option["text"].ToString(),
                                  Caption = option["_source"]["caption"].ToString(),
                                  Page = option["_source"]["page"].ToString(),
-                                 Weight = option["_source"]["weight"].ToString(),
+                                 Weight = option["_source"]["caption_suggest"]["weight"].ToString(),
                              };
                 resultList.AddRange(lQuery.ToList());
             }
