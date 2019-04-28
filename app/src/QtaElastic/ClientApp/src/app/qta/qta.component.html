@@ -14,11 +14,12 @@
                       <li class="list-group-item list-group-item-secondary" *ngFor="let suggestion of suggestions">
                         <span><strong>{{ suggestion.caption }}</strong></span>
                         <div class="clearfix"></div>
-                        <span class=".text-danger">Weight:</span>
+                        <span class=".text-danger">Score:</span>
                         <span class="d-inline text-primary">
-                          <span>{{suggestion.weight}}</span>
+                          <span>{{suggestion.score}}</span>
                         </span>
                         <span>&nbsp;Page:</span><span>{{suggestion.page}}</span>
+                        <span>&nbsp;Popularity:</span><span>{{suggestion.popularity}}</span>
                       </li>
                     </ul>
               </div>

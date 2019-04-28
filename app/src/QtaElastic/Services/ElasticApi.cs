@@ -124,6 +124,9 @@ namespace QtaElastic.Services
                                  Caption = option["_source"]["caption"].ToString(),
                                  Page = option["_source"]["page"].ToString(),
                                  Weight = option["_source"]["caption_suggest"]["weight"].ToString(),
+                                 Score = option["_source"]["score"].ToString(),
+                                 Popularity = option["_source"]["popularity"].ToString(),
+
                              };
                 resultList.AddRange(lQuery.ToList());
             }

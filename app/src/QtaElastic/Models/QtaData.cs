@@ -12,5 +12,7 @@ namespace QtaElastic.Models
         public string Caption { get; set; }
         public string Weight { get; set; }
         public string GlobalId { get; set; }
+        public string Score { get; set; }
+        public string Popularity { get; set; }
     }
 }

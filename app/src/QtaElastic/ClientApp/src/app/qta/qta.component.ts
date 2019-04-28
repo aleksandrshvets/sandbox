@@ -63,4 +63,5 @@ interface QtaData {
   page: string;
   weight: string;
   globalid: string;
+  score: string;
 }
