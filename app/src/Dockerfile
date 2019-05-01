@@ -23,5 +23,6 @@ RUN dotnet publish "QtaElastic.csproj" -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-COPY --from=node-build /src/dist ./ClientApp/dist
+COPY --from=node-build /src/dist/ClientApp ./ClientApp/dist
+
 ENTRYPOINT ["dotnet", "QtaElastic.dll"]

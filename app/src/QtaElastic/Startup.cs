@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QtaElastic.Models;
 using QtaElastic.Services;
+using System.IO;
 
 namespace QtaElastic
 {
@@ -27,6 +28,9 @@ namespace QtaElastic
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IElasticApi, ElasticApi>();
+            services.AddNodeServices(options => {
+                options.ProjectPath = Path.Combine(Directory.GetCurrentDirectory(), "ClientApp");
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddOptions();
             services.AddHttpClient();
