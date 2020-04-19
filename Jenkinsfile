@@ -1,13 +1,6 @@
-pipeline {
-   agent any
-
-   stages {
-      stage('Hello') {
-         steps {
-		def pipeline
+  def pipeline
+    node() {
         pipeline = load 'DoJob.groovy'
         pipeline.firstTest()
-         }
-      }
-   }
-}
+    }
+    pipeline.firstTest()
