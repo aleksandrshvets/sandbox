@@ -1,8 +1,13 @@
-node {
-job('dsd'){
-    jobDsl targets: ['*.groovy'].join('\n'),
-           removedJobAction: 'DELETE',
-           removedViewAction: 'DELETE',
-           lookupStrategy: 'SEED_JOB'
-	}
+pipeline {
+   agent any
+
+   stages {
+      stage('Hello') {
+         steps {
+		def pipeline
+        pipeline = load 'DoJob.groovy'
+        pipeline.firstTest()
+         }
+      }
+   }
 }
