@@ -1,4 +1,6 @@
 node {
+	    def msg = powershell(returnStdout: true, script: 'Write-Output "PowerShell is mighty!"')
+    println msg
    stage 'test'
    def whatThe = someFunc('textToFunc')
    def whatThe2 = someFunc2('textToFunc2')
