@@ -1,2 +1,3 @@
-def message = "sasdsad"
-echo "${message}"
+stage('Setup'){
+  echo "Build Stage"
+}; stage('Build'){
