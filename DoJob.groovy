@@ -1,11 +1,7 @@
 def firstTest() {
+echo "sfsf"
 }
 
 def testTwo() {
-
+echo "sfsf"
 }
-
-return [
-    firstTest: this.&firstTest,
-    testTwo: this.&testTwo
-]
