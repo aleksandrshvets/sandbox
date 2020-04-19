@@ -1,6 +1,10 @@
 node {
-	    def msg = powershell(returnStdout: true, script: 'Write-Output "PowerShell is mighty!"')
-    println msg
+def currentDirectory = pwd()
+
+def scriptPath = "${currentDirectory}\\sandbox\\ci\\jenkins\\secondfolder\\secondscript.ps1"
+echo "${scriptPath}"
+
+powershell returnStdout: true, script: "${scriptPath}"
    stage 'test'
    def whatThe = someFunc('textToFunc')
    def whatThe2 = someFunc2('textToFunc2')
