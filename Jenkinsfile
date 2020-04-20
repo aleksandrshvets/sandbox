@@ -8,6 +8,10 @@ echo "${scriptPath}"
 
 def mainRes = powershell returnStdout: true, script: "${scriptPath}"
 echo "${mainRes}"
+
+def dirs = powershell returnStdout: true, script: "Get-ChildItem ${currentDirectory}"
+echo "${dirs}"
+
 if (mainRes.trim() == "True"){
 echo "true!!!!!!!!!!!"
 }
