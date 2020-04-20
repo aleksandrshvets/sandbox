@@ -1,7 +1,7 @@
 node {
 def currentDirectory = pwd()
 checkout scm
-def scriptPath = "D:\\GitHub\\sandbox\\ci\\jenkins\\secondfolder\\secondscript.ps1 -path D:\\GitHub\\sandbox\\ci\\jenkins\\firstfolder\\firstscript.ps1 -parameter b"
+def scriptPath = "${currentDirectory}\\ci\\jenkins\\second@folder\\secondscript.ps1 -path ${currentDirectory}\\ci\\jenkins\\first@folder\\firstscript.ps1 -parameter b"
 echo "${scriptPath}"
 
 
