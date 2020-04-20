@@ -1,13 +1,20 @@
 node {
 def currentDirectory = pwd()
 checkout scm
-def res= powershell returnStdout: true, script: "Get-ChildItem -Path D:\\Jenkins\\workspace\\first"
-echo "${res}"
-echo "${WORKSPACE}"
-def scriptPath = "${currentDirectory}\\ci\\jenkins\\secondfolder\\secondscript.ps1"
+def scriptPath = "D:\\GitHub\\sandbox\\ci\\jenkins\\secondfolder\\secondscript.ps1 -path D:\\GitHub\\sandbox\\ci\\jenkins\\firstfolder\\firstscript.ps1 -parameter b"
 echo "${scriptPath}"
 
-powershell returnStdout: true, script: "${scriptPath}"
+
+
+def mainRes = powershell returnStdout: true, script: "${scriptPath}"
+echo "${mainRes}"
+if (mainRes.trim() == "True"){
+echo "true!!!!!!!!!!!"
+}
+else {
+echo "false!!!!!!!!!!!"
+}
+
    stage 'test'
    def whatThe = someFunc('textToFunc')
    def whatThe2 = someFunc2('textToFunc2')
